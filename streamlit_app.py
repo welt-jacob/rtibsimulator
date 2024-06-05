@@ -262,6 +262,7 @@ def main():
 
 if __name__ == '__main__':
     data = main()
-    print(data)
+    print(data.columns)
+    print(data.dtypes)
     # rtib_test, date = calculate_averages(data)
     # present_result(rtib_test, date)
