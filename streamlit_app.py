@@ -236,5 +236,5 @@ if __name__ == '__main__':
     df = main()
     print(df.columns)
     print(df.dtypes)
-    rtib_test, date = calculate_averages(data)
+    rtib_test, date = calculate_averages(df)
     present_result(rtib_test, date)
