@@ -57,7 +57,7 @@ def main():
 
         csv_file = st.file_uploader('CSV 파일 업로드', type=['csv'])
 
-        #print(csv_file)
+        print(csv_file.type)
         if csv_file is not None:
             current_time = datetime.now()
             filename = current_time.isoformat().replace(':', '_') + '.csv'
@@ -69,7 +69,7 @@ def main():
             # csv를 보여주기 위해 pandas 데이터 프레임으로 만들어야한다.
             df = pd.read_csv('csv/'+filename)
             test_df = st.dataframe(df)
-
+            print(df.columns)
 
     else :
         st.subheader('이 대시보드 설명')
