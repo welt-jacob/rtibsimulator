@@ -45,7 +45,6 @@ def main():
             # csv를 보여주기 위해 pandas 데이터 프레임으로 만들어야한다.
             df = pd.read_csv('csv/'+filename)
 
-
     return df
 
 def preprocess_data(df):
@@ -258,8 +257,6 @@ def present_result(rtib_test, dates):
 
 if __name__ == '__main__':
     df = main()
-    print(df.columns)
-    print(df.dtypes)
     processed_df = preprocess_data(df)
     rtib_test, date = calculate_averages(processed_df)
     present_result(rtib_test, date)
