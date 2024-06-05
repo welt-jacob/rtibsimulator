@@ -68,13 +68,13 @@ def main():
 
             # csv를 보여주기 위해 pandas 데이터 프레임으로 만들어야한다.
             df = pd.read_csv('csv/'+filename)
-            data = st.dataframe(df)
+            test_df = st.dataframe(df)
 
 
     else :
         st.subheader('이 대시보드 설명')
 
-    return data
+    return test_df
 
 # def calculate_rTIB(accSE, accTST, accDSE, SW):
 #     # Calculate recommended time in bed (rTIB) based on sleep efficiency metrics
