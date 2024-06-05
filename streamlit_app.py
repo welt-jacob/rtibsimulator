@@ -24,35 +24,11 @@ def save_uploaded_file(directory, file):
 def main():
     st.title('앱 데시보드')
 
-    menu = ['이미지 업로드', 'csv 업로드', 'About']
+    menu = ['csv 업로드']
 
     choice = st.sidebar.selectbox('메뉴', menu)
     
     if choice == menu[0]:
-        st.subheader('이미지 파일 업로드')
-        img_file = st.file_uploader('이미지를 업로드 하세요.', type=['png', 'jpg', 'jpeg'])
-        if img_file is not None: # 파일이 없는 경우는 실행 하지 않음
-            print(type(img_file))
-            print(img_file.name)
-            print(img_file.size)
-            print(img_file.type)
-
-            # 유저가 올린 파일을,
-            # 서버에서 처리하기 위해서(유니크하게) 
-            # 파일명을 현재 시간 조합으로 만든다. 
-            current_time = datetime.now()
-            print(current_time)
-            print(current_time.isoformat().replace(':', "_") + '.jpg') #문자열로 만들어 달라
-            # 파일 명에 특정 특수문자가 들어가면 만들수 없다.
-            filename = current_time.isoformat().replace(':', "_") + '.jpg'
-            img_file.name = filename
-
-            save_uploaded_file('image', img_file)
-
-            st.image(f'image/{img_file.name}')
-
-
-    elif choice == menu[1]:
         st.subheader('csv 파일 업로드 ')
 
         csv_file = st.file_uploader('CSV 파일 업로드', type=['csv'])
@@ -68,13 +44,9 @@ def main():
 
             # csv를 보여주기 위해 pandas 데이터 프레임으로 만들어야한다.
             df = pd.read_csv('csv/'+filename)
-            test_df = st.dataframe(df)
-            print(df.columns)
 
-    else :
-        st.subheader('이 대시보드 설명')
 
-    return test_df
+    return df
 
 # def calculate_rTIB(accSE, accTST, accDSE, SW):
 #     # Calculate recommended time in bed (rTIB) based on sleep efficiency metrics
@@ -261,8 +233,8 @@ def main():
     
 
 if __name__ == '__main__':
-    data = main()
-    print(data.columns)
-    print(data.dtypes)
+    df = main()
+    print(df.columns)
+    print(df.dtypes)
     # rtib_test, date = calculate_averages(data)
     # present_result(rtib_test, date)
