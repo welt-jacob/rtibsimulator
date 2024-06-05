@@ -48,6 +48,30 @@ def main():
 
     return df
 
+def preprocess_data(df):
+    df['LOT'] = pd.to_datetime(df['LOT'], format='%Y/%m/%d %H:%M')
+    df['AET'] = pd.to_datetime(df['AET'], format='%Y/%m/%d %H:%M')
+
+    df['AST'] = self.df['LOT'] + pd.to_timedelta(self.df['SOL'], unit='m')
+    df['AST'] = pd.to_datetime(df['AST'], format='%Y/%m/%d %H:%M')
+
+    df['WASO'] = pd.to_timedelta(df['WASO'], unit='m')
+
+    df['TST'] = (df['AET'] - df['AST'] - pd.to_timedelta(df['WASO'], unit='m'))
+
+    df['TST'] = df['TST'].dt.total_seconds() / 60
+    df['WASO'] = df['WASO'].dt.total_seconds() / 60
+
+    df['DSE'] = (pd.to_datetime(self.df['AET']) - pd.to_datetime(df['LOT']))
+
+    df['DSE'] = self.df['DSE'].dt.total_seconds() / 60
+
+    df['SE'] = df['TST'] / self.df['DSE']
+
+    df.loc[df['TST'] > 720, ['DNS', 'LOT', 'AET', 'SOL', 'WASO', 'AST', 'TST', 'DSE', 'SE']] = np.nan
+
+    return df
+
 def calculate_rTIB(accSE, accTST, accDSE, SW):
     # Calculate recommended time in bed (rTIB) based on sleep efficiency metrics
     accSE = round(accSE, 2)
@@ -236,5 +260,6 @@ if __name__ == '__main__':
     df = main()
     print(df.columns)
     print(df.dtypes)
-    rtib_test, date = calculate_averages(df)
+    processed_df = preprocess_data(df)
+    rtib_test, date = calculate_averages(processed_df)
     present_result(rtib_test, date)
