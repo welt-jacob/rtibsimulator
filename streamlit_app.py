@@ -52,7 +52,7 @@ def preprocess_data(df):
     df['LOT'] = pd.to_datetime(df['LOT'], format='%Y/%m/%d %H:%M')
     df['AET'] = pd.to_datetime(df['AET'], format='%Y/%m/%d %H:%M')
 
-    df['AST'] = self.df['LOT'] + pd.to_timedelta(self.df['SOL'], unit='m')
+    df['AST'] = df['LOT'] + pd.to_timedelta(df['SOL'], unit='m')
     df['AST'] = pd.to_datetime(df['AST'], format='%Y/%m/%d %H:%M')
 
     df['WASO'] = pd.to_timedelta(df['WASO'], unit='m')
@@ -62,11 +62,11 @@ def preprocess_data(df):
     df['TST'] = df['TST'].dt.total_seconds() / 60
     df['WASO'] = df['WASO'].dt.total_seconds() / 60
 
-    df['DSE'] = (pd.to_datetime(self.df['AET']) - pd.to_datetime(df['LOT']))
+    df['DSE'] = (pd.to_datetime(df['AET']) - pd.to_datetime(df['LOT']))
 
-    df['DSE'] = self.df['DSE'].dt.total_seconds() / 60
+    df['DSE'] = df['DSE'].dt.total_seconds() / 60
 
-    df['SE'] = df['TST'] / self.df['DSE']
+    df['SE'] = df['TST'] / df['DSE']
 
     df.loc[df['TST'] > 720, ['DNS', 'LOT', 'AET', 'SOL', 'WASO', 'AST', 'TST', 'DSE', 'SE']] = np.nan
 
