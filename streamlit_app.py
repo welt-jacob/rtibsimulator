@@ -2,6 +2,7 @@ import altair as alt
 import numpy as np
 import pandas as pd
 import streamlit as st
+from datetime import datetime
 import os # 경로 탐색
 
 # 파일 업로드 함수
