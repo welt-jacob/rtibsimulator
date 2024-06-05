@@ -5,6 +5,8 @@ import streamlit as st
 
 df = st.file_uploader('CSV 파일 업로드', type=['csv'])
 
+df.dtypes
+
 df['LOT'] = pd.to_datetime(df['LOT'], format='%Y/%m/%d %H:%M')
 df['AET'] = pd.to_datetime(df['AET'], format='%Y/%m/%d %H:%M')
 
