@@ -22,7 +22,7 @@ def save_uploaded_file(directory, file):
 
 # 기본 형식
 def main():
-    st.title('앱 데시보드')
+    st.title('WELT RTIB Simulator')
 
     menu = ['csv 업로드']
 
@@ -259,4 +259,5 @@ if __name__ == '__main__':
     df = main()
     processed_df = preprocess_data(df)
     rtib_test, date = calculate_averages(processed_df)
+    st.success("RTIB Results")
     present_result(rtib_test, date)
