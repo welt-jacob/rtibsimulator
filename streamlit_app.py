@@ -259,5 +259,6 @@ if __name__ == '__main__':
     df = main()
     processed_df = preprocess_data(df)
     rtib_test, date = calculate_averages(processed_df)
-    st.success("RTIB Results")
+    st.subheader('RTIB 결과')
     present_result(rtib_test, date)
+    st.success("RTIB 시뮬레이션 완료")
