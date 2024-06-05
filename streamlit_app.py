@@ -105,12 +105,12 @@ def calculate_rTIB(accSE, accTST, accDSE, SW):
     rTIB = round(rTIB / 15) * 15
     return rTIB
 
-def calculate_averages(dataframe):
-    
-    se_list = dataframe['SE'].tolist()
-    tst_list = dataframe['TST'].tolist()
-    dse_list = dataframe['DSE'].tolist()
-    date_list = dataframe['DATE'].tolist()
+def calculate_averages(data):
+    df = st.dataframe(data)
+    se_list = df['SE'].tolist()
+    tst_list = df['TST'].tolist()
+    dse_list = df['DSE'].tolist()
+    date_list = df['DATE'].tolist()
     
     se_averages = []
     tst_averages = []
