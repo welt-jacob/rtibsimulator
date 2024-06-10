@@ -48,8 +48,14 @@ def main():
     return df
 
 def preprocess_data(df):
-    df['LOT'] = pd.to_datetime(df['LOT'], format='%Y/%m/%d %H:%M')
-    df['AET'] = pd.to_datetime(df['AET'], format='%Y/%m/%d %H:%M')
+    try:
+        df['LOT'] = pd.to_datetime(df['LOT'], format='%Y/%m/%d %H:%M')
+    except:
+        df['LOT'] = pd.to_datetime(df['LOT'], format='%Y-%m-%d %H:%M')
+    try:
+        df['AET'] = pd.to_datetime(df['AET'], format='%Y/%m/%d %H:%M')
+    except:
+        df['AET'] = pd.to_datetime(df['AET'], format='%Y-%m-%d %H:%M')
 
     df['AST'] = df['LOT'] + pd.to_timedelta(df['SOL'], unit='m')
     df['AST'] = pd.to_datetime(df['AST'], format='%Y/%m/%d %H:%M')
