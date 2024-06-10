@@ -33,7 +33,7 @@ def main():
 
         csv_file = st.file_uploader('CSV 파일 업로드', type=['csv'])
 
-        print(csv_file.type)
+        #print(csv_file.type)
         if csv_file is not None:
             current_time = datetime.now()
             filename = current_time.isoformat().replace(':', '_') + '.csv'
