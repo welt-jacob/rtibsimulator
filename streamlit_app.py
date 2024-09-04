@@ -142,7 +142,7 @@ def calculate_averages(data):
               date_value = date_val[-1]
               print(date_value)
               date_obj = pd.to_datetime(date_value)
-              new_date_obj = date_obj + pd.Timedelta(days=1)
+              new_date_obj = date_obj + pd.Timedelta(days=2)
               new_date_value = new_date_obj.strftime('%Y/%m/%d')
               print(new_date_value)
               assinged_dates.append(new_date_value)
