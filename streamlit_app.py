@@ -258,6 +258,7 @@ def present_result(rtib_test, dates):
     results_df['RTIB_AET'] += pd.to_timedelta('7 hours')
     results_df['RTIB_LOT'] = (results_df['RTIB_AET'] - pd.to_timedelta(results_df['RTIB'], unit='m'))
     results_df = results_df[['RTIB_DATE','RTIB_LOT','RTIB_AET','RTIB']]
+    results_df = results_df.drop(results_df.index[-1])
     st.dataframe(results_df)
     
 
